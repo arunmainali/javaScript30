@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Drum Kit</title>
+
+	<style>
+		body {
+			display: flex;
+			min-height: 100vh;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.keys {
+			max-width: fit-content;
+			margin-inline: auto;
+			display: flex;
+			flex-direction: row;
+			gap: 32px;
+		}
+
+		.key {
+			display: flex;
+			flex-direction: column;
+			border: 2px solid black;
+			padding: 5px;
+			background: #6effb7;
+		}
+
+		kbd {
+			text-align: center;
+		}
+	</style>
+
+</head>
+<body>
+
+<div class="keys">
+	<div data-key="65" class="key">
+		<kbd>A</kbd>
+		<span class="sound">clap</span>
+	</div>
+	<div data-key="83" class="key">
+		<kbd>S</kbd>
+		<span class="sound">highhat</span>
+	</div>
+	<div data-key="68" class="key">
+		<kbd>D</kbd>
+		<span class="sound">kick</span>
+	</div>
+</div>
+
+<audio data-key="65" src="sounds/clap.mp3"></audio>
+<audio data-key="83" src="sounds/highhat.mp3"></audio>
+<audio data-key="68" src="sounds/kick.mp3"></audio>
+
+<script>
+	window.addEventListener("keydown", function(e) {
+		console.log(e.keyCode);
+		const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+		const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+		console.log(key);
+		if (!audio) return;
+		audio.currentTime = 0;
+		audio.play();
+	})
+</script>
+
+</body>
+</html>
