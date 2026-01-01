@@ -25,7 +25,14 @@
 			flex-direction: column;
 			border: 2px solid black;
 			padding: 5px;
-			background: #6effb7;
+			background: #fbee00;
+			transition: all 0.07s;
+		}
+
+		.playing {
+			transform: scale(1.1);
+			border-color: #ffc600;
+			box-shadow: 0 0 10px #ffc600;
 		}
 
 		kbd {
@@ -63,8 +70,17 @@
 		console.log(key);
 		if (!audio) return;
 		audio.currentTime = 0;
+		key.classList.add('playing');
 		audio.play();
 	})
+
+	function removeTransition(e) {
+		if (e.propertyName !== 'transform') return;
+		this.classList.remove('playing');
+	}
+
+	const allKeys = document.querySelectorAll('.key');
+	allKeys.forEach(key => key.addEventListener('transitionend', removeTransition));
 </script>
 
 </body>
