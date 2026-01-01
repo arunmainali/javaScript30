@@ -3,43 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Drum Kit</title>
-
-	<style>
-		body {
-			display: flex;
-			min-height: 100vh;
-			justify-content: center;
-			align-items: center;
-		}
-
-		.keys {
-			max-width: fit-content;
-			margin-inline: auto;
-			display: flex;
-			flex-direction: row;
-			gap: 32px;
-		}
-
-		.key {
-			display: flex;
-			flex-direction: column;
-			border: 2px solid black;
-			padding: 5px;
-			background: #fbee00;
-			transition: all 0.07s;
-		}
-
-		.playing {
-			transform: scale(1.1);
-			border-color: #ffc600;
-			box-shadow: 0 0 10px #ffc600;
-		}
-
-		kbd {
-			text-align: center;
-		}
-	</style>
-
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -62,26 +26,7 @@
 <audio data-key="83" src="sounds/highhat.mp3"></audio>
 <audio data-key="68" src="sounds/kick.mp3"></audio>
 
-<script>
-	window.addEventListener("keydown", function(e) {
-		console.log(e.keyCode);
-		const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-		const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-		console.log(key);
-		if (!audio) return;
-		audio.currentTime = 0;
-		key.classList.add('playing');
-		audio.play();
-	})
-
-	function removeTransition(e) {
-		if (e.propertyName !== 'transform') return;
-		this.classList.remove('playing');
-	}
-
-	const allKeys = document.querySelectorAll('.key');
-	allKeys.forEach(key => key.addEventListener('transitionend', removeTransition));
-</script>
+<script src="index.js"></script>
 
 </body>
 </html>

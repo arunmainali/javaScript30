@@ -1,0 +1,33 @@
+body {
+	display: flex;
+	min-height: 100vh;
+	justify-content: center;
+	align-items: center;
+}
+
+.keys {
+	max-width: fit-content;
+	margin-inline: auto;
+	display: flex;
+	flex-direction: row;
+	gap: 32px;
+}
+
+.key {
+	display: flex;
+	flex-direction: column;
+	border: 2px solid black;
+	padding: 5px;
+	background: #fbee00;
+	transition: all 0.07s;
+}
+
+.playing {
+	transform: scale(1.1);
+	border-color: #ffc600;
+	box-shadow: 0 0 10px #ffc600;
+}
+
+kbd {
+	text-align: center;
+}
